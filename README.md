@@ -26,7 +26,7 @@ This Python script allows you to copy a directory from one location to another a
 #### It's recommended to create a [System Restore Point](https://www.windowscentral.com/how-use-system-restore-windows-11#create_restore_point_windows11) before proceeding with any changes.
 To run the script, open a Command Prompt or PowerShell, navigate to the directory where the script is located, and execute the following command:
 
-```python copy_and_link.py <from_path> <to_path>```
+```python copy_to_ssd.py <from_path> <to_path>```
 
 ## Options
 
@@ -36,11 +36,11 @@ To run the script, open a Command Prompt or PowerShell, navigate to the director
 
 To copy a directory from C:\Users\Marcello\Kali to D:\Programs and create a junction, run:
 
-```python copy_and_link.py "C:\Users\Marcello\Kali" "D:\Programs"```
+```python  copy_to_ssd.py "C:\Users\Marcello\Kali" "D:\Programs"```
 
 To see usage information, run:
 
-```python copy_and_link.py --help```
+```python copy_to_ssd.py --help```
 
 ## Functionality
 
