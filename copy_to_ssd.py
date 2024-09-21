@@ -3,6 +3,7 @@ import subprocess
 import sys
 from os import path
 
+
 def print_help():
     help_text = """
 Usage: python copy_and_link.py <from_path> <to_path>
@@ -19,6 +20,7 @@ Options:
 """
     print(help_text)
 
+
 def copy_and_link(from_path, to_path):
     """
     :param from_path: current folder location
@@ -28,10 +30,30 @@ def copy_and_link(from_path, to_path):
     This function leverages the subprocess module to run robocopy to create a copy of the app folder in the destination folder.
     Additionally, it creates a directory junction (symlink) to keep other potential resources working.
     """
-    subprocess.run(["robocopy", from_path, f"{to_path}\\{path.basename(from_path)}", "/sec", "/move", "/e"], shell=True)
+    subprocess.run(
+        [
+            "robocopy",
+            from_path,
+            f"{to_path}\\{path.basename(from_path)}",
+            "/sec",
+            "/move",
+            "/e"
+        ],
+        shell=True
+    )
     if path.exists(from_path):
         subprocess.run(["rmdir", "/S", "/Q", from_path], shell=True)
-    subprocess.run(["cmd.exe", "/c", "mklink", "/J", from_path, f"{to_path}\\{path.basename(from_path)}"], shell=True)
+    subprocess.run(
+        [
+            "cmd.exe",
+            "/c",
+            "mklink",
+            "/J",
+            from_path,
+            f"{to_path}\\{path.basename(from_path)}"
+        ],
+        shell=True
+    )
 
 
 # Example usage
@@ -47,5 +69,3 @@ if __name__ == "__main__":
         print(e)
         print_help()
         sys.exit(0)
-
-
