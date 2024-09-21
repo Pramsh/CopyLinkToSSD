@@ -39,11 +39,10 @@ def copy_and_link(origin_path, destination_path):
             f"{destination_path}\\{path.basename(origin_path)}",
             "/sec",
             "/move",
-            "/e"
+            "/e",
         ],
-
         shell=True,
-        check=True
+        check=True,
     )
     if path.exists(origin_path):
         subprocess.run(
@@ -51,11 +50,10 @@ def copy_and_link(origin_path, destination_path):
                 "rmdir",
                 "/S",
                 "/Q",
-                origin_path
+                origin_path,
             ],
-
             shell=True,
-            check=True
+            check=True,
         )
     subprocess.run(
         [
@@ -64,11 +62,10 @@ def copy_and_link(origin_path, destination_path):
             "mklink",
             "/J",
             origin_path,
-            f"{destination_path}\\{path.basename(origin_path)}"
+            f"{destination_path}\\{path.basename(origin_path)}",
         ],
-
         shell=True,
-        check=True
+        check=True,
     )
 
 
