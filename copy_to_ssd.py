@@ -41,7 +41,9 @@ def copy_and_link(origin_path, destination_path):
             "/move",
             "/e"
         ],
-        shell=True, check=True
+
+        shell=True,
+        check=True
     )
     if path.exists(origin_path):
         subprocess.run(
@@ -51,7 +53,9 @@ def copy_and_link(origin_path, destination_path):
                 "/Q",
                 origin_path
             ],
-            shell=True, check=True
+
+            shell=True,
+            check=True
         )
     subprocess.run(
         [
@@ -62,7 +66,9 @@ def copy_and_link(origin_path, destination_path):
             origin_path,
             f"{destination_path}\\{path.basename(origin_path)}"
         ],
-        shell=True
+
+        shell=True,
+        check=True
     )
 
 
