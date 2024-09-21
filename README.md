@@ -1,6 +1,6 @@
 # Copy and Link Script
 
-This Python script allows you to copy a directory from one location to another and create a directory junction (symbolic link) for easy access.
+This Python script allows you to copy a directory from one location to another and create a directory junction (symbolic link) for easy access. I got inspired to create this automation watching this useful and well explained [YT video](https://www.youtube.com/watch?v=QeKRJCv3Rpw)! 
 
 ## Table of Contents
 
