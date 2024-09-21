@@ -21,7 +21,7 @@ Options:
     print(help_text)
 
 
-def copy_and_link(from_path, to_path):
+def copy_and_link(origin_path, destination_path):
     """
     :param from_path: current folder location
     :param to_path: destination folder location
@@ -35,21 +35,21 @@ def copy_and_link(from_path, to_path):
     subprocess.run(
         [
             "robocopy",
-            from_path,
-            f"{to_path}\\{path.basename(from_path)}",
+            origin_path,
+            f"{destination_path}\\{path.basename(origin_path)}",
             "/sec",
             "/move",
             "/e"
         ],
-        shell=True
+        shell=True, check=True
     )
-    if path.exists(from_path):
+    if path.exists(origin_path):
         subprocess.run(
             [
                 "rmdir",
                 "/S",
                 "/Q",
-                from_path
+                origin_path
             ],
             shell=True, check=True
         )
@@ -59,8 +59,8 @@ def copy_and_link(from_path, to_path):
             "/c",
             "mklink",
             "/J",
-            from_path,
-            f"{to_path}\\{path.basename(from_path)}"
+            origin_path,
+            f"{destination_path}\\{path.basename(origin_path)}"
         ],
         shell=True
     )
