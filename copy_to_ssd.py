@@ -36,8 +36,16 @@ def copy_and_link(from_path, to_path):
 
 # Example usage
 if __name__ == "__main__":
-    from_path, to_path = sys.argv[1:3]
-    copy_and_link(from_path, to_path)
-
+    try:
+        if sys.argv[1] == "--help":
+            print_help()
+            sys.exit(0)
+        from_path, to_path = sys.argv[1:3]
+        copy_and_link(from_path, to_path)
+        sys.exit(0)
+    except Exception as e:
+        print(e)
+        print_help()
+        sys.exit(0)
 
 
