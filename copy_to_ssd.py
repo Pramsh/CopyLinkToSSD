@@ -13,7 +13,7 @@ Copy a directory from <from_path> to <to_path> and create a directory junction.
 Arguments:
   from_path   The path of the directory to copy.
   to_path     The destination path where the directory will be copied.
-  
+
 Options:
   --help      Show this help message and exit.
 
@@ -27,8 +27,10 @@ def copy_and_link(from_path, to_path):
     :param to_path: destination folder location
     :return: void
 
-    This function leverages the subprocess module to run robocopy to create a copy of the app folder in the destination folder.
-    Additionally, it creates a directory junction (symlink) to keep other potential resources working.
+    This function leverages the subprocess module to run robocopy to create
+    a copy of the app folder in the destination folder.
+    Additionally, it creates a directory junction (symlink)
+    to keep other potential resources working.
     """
     subprocess.run(
         [
@@ -42,7 +44,15 @@ def copy_and_link(from_path, to_path):
         shell=True
     )
     if path.exists(from_path):
-        subprocess.run(["rmdir", "/S", "/Q", from_path], shell=True)
+        subprocess.run(
+            [
+                "rmdir",
+                "/S",
+                "/Q",
+                from_path
+            ],
+            shell=True, check=True
+        )
     subprocess.run(
         [
             "cmd.exe",
