@@ -26,7 +26,7 @@ This Python script allows you to copy a directory from one location to another a
 
 ## Usage
 #### It's recommended to create a [System Restore Point](https://www.windowscentral.com/how-use-system-restore-windows-11#create_restore_point_windows11) before proceeding with any changes.
-To run the script, open a Command Prompt or PowerShell, navigate to the directory where the script is located, and execute the following command:
+To run the script, open a Command Prompt or PowerShell **with Admin privileges**, navigate to the directory where the script is located, and execute the following command:
 
 ```python copy_to_ssd.py <from_path> <to_path>```
 
