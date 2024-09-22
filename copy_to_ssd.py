@@ -34,7 +34,7 @@ from os import path
 
 def print_help():
     """
-    prints script instruction
+    Prints script instruction
     """
     help_text = """
 Usage: python copy_and_link.py <from_path> <to_path>
@@ -64,7 +64,7 @@ def copy_and_link(origin_path, destination_path):
     to keep other potential resources working.
     """
     if not path.exists(origin_path) or not path.exists(destination_path):
-        print("Insert a valid path")
+        print("Both paths must already exists.")
         print_help()
         sys.exit(0)
     subprocess.run(
