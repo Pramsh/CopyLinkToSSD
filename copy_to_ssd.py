@@ -3,8 +3,7 @@ import subprocess
 import sys
 from os import path
 
-
-"""
+r"""
 copy_and_link.py
 
 This module provides functionality to copy a directory from one location to another 
@@ -26,8 +25,8 @@ Options:
 - --help: Displays usage information and exits the script.
 
 Example:
-To copy a directory from C:\\Users\marcello\Kali to D:\Programs and create a junction, 
-execute: python copy_and_link.py "C:\\Users\marcello\Kali" "D:\Programs"
+To copy a directory from C:\Users\marcello\Kali to D:\Programs and create a junction, 
+execute: python copy_and_link.py "C:\Users\marcello\Kali" "D:\Programs"
 
 This script is designed to work on Windows systems and requires Python 3.x.
 """
