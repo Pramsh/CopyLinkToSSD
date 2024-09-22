@@ -63,53 +63,53 @@ def copy_and_link(origin_path, destination_path):
     Additionally, it creates a directory junction (symlink)
     to keep other potential resources working.
     """
-    subprocess.run(
-        [
-            "robocopy",
-            origin_path,
-            f"{destination_path}\\{path.basename(origin_path)}",
-            "/sec",
-            "/move",
-            "/e",
-        ],
-        shell=True,
-        check=True,
-    )
-    if path.exists(origin_path):
+    try:
         subprocess.run(
             [
-                "rmdir",
-                "/S",
-                "/Q",
+                "robocopy",
                 origin_path,
+                f"{destination_path}\\{path.basename(origin_path)}",
+                "/sec",
+                "/move",
+                "/e",
             ],
             shell=True,
             check=True,
         )
-    subprocess.run(
-        [
-            "cmd.exe",
-            "/c",
-            "mklink",
-            "/J",
-            origin_path,
-            f"{destination_path}\\{path.basename(origin_path)}",
-        ],
-        shell=True,
-        check=True,
-    )
+        if path.exists(origin_path):
+            subprocess.run(
+                [
+                    "rmdir",
+                    "/S",
+                    "/Q",
+                    origin_path,
+                ],
+                shell=True,
+                check=True,
+            )
+        subprocess.run(
+            [
+                "cmd.exe",
+                "/c",
+                "mklink",
+                "/J",
+                origin_path,
+                f"{destination_path}\\{path.basename(origin_path)}",
+            ],
+            shell=True,
+            check=True,
+        )
+    except subprocess.CalledProcessError as e:
+        print(f"Command failed with error: {e}")
+        print_help()
+        sys.exit(0)
 
 
 # Example usage
 if __name__ == "__main__":
-    try:
-        if sys.argv[1] == "--help":
-            print_help()
-            sys.exit(0)
-        from_path, to_path = sys.argv[1:3]
-        copy_and_link(from_path, to_path)
-        sys.exit(0)
-    except Exception as e:
-        print(e)
+    if sys.argv[1] == "--help":
         print_help()
         sys.exit(0)
+    from_path, to_path = sys.argv[1:3]
+    copy_and_link(from_path, to_path)
+    sys.exit(0)
