@@ -4,9 +4,38 @@ import sys
 from os import path
 
 
+"""
+copy_and_link.py
+
+This module provides functionality to copy a directory from one location to another 
+and create a directory junction (symbolic link) for easy access.
+
+Features:
+- Uses 'robocopy' to efficiently copy files and directories, maintaining security attributes.
+- Creates a junction link at the original directory location, allowing access to the new location.
+
+Usage:
+To use this module, run the script with the following command:
+python copy_and_link.py <from_path> <to_path>
+
+Parameters:
+- from_path (str): The path of the directory to be copied.
+- to_path (str): The destination path where the directory will be copied.
+
+Options:
+- --help: Displays usage information and exits the script.
+
+Example:
+To copy a directory from C:\\Users\marcello\Kali to D:\Programs and create a junction, 
+execute: python copy_and_link.py "C:\\Users\marcello\Kali" "D:\Programs"
+
+This script is designed to work on Windows systems and requires Python 3.x.
+"""
+
+
 def print_help():
     """
-     prints script instruction
+    prints script instruction
     """
     help_text = """
 Usage: python copy_and_link.py <from_path> <to_path>

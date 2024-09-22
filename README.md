@@ -36,9 +36,9 @@ To run the script, open a Command Prompt or PowerShell, navigate to the director
 
 ## Example
 
-To copy a directory from C:\Users\Marcello\Kali to D:\Programs and create a junction, run:
+To copy a directory from C:\Users\marcello\Kali to D:\Programs and create a junction, run:
 
-```python  copy_to_ssd.py "C:\Users\Marcello\Kali" "D:\Programs"```
+```python  copy_to_ssd.py "C:\Users\marcello\Kali" "D:\Programs"```
 
 To see usage information, run:
 
