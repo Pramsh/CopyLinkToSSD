@@ -63,53 +63,57 @@ def copy_and_link(origin_path, destination_path):
     Additionally, it creates a directory junction (symlink)
     to keep other potential resources working.
     """
-    try:
-        subprocess.run(
-            [
-                "robocopy",
-                origin_path,
-                f"{destination_path}\\{path.basename(origin_path)}",
-                "/sec",
-                "/move",
-                "/e",
-            ],
-            shell=True,
-            check=True,
-        )
-        if path.exists(origin_path):
-            subprocess.run(
-                [
-                    "rmdir",
-                    "/S",
-                    "/Q",
-                    origin_path,
-                ],
-                shell=True,
-                check=True,
-            )
-        subprocess.run(
-            [
-                "cmd.exe",
-                "/c",
-                "mklink",
-                "/J",
-                origin_path,
-                f"{destination_path}\\{path.basename(origin_path)}",
-            ],
-            shell=True,
-            check=True,
-        )
-    except subprocess.CalledProcessError as e:
-        print(f"Command failed with error: {e}")
+    if not path.exists(origin_path) or not path.exists(destination_path):
+        print("Insert a valid path")
         print_help()
         sys.exit(0)
+    subprocess.run(
+        [
+            "robocopy",
+            origin_path,
+            f"{destination_path}\\{path.basename(origin_path)}",
+            "/sec",
+            "/move",
+            "/e",
+        ],
+        shell=True,
+        check=False,
+    )
+    if path.exists(origin_path):
+        subprocess.run(
+            [
+                "rmdir",
+                "/S",
+                "/Q",
+                origin_path,
+            ],
+            shell=True,
+            check=False,
+        )
+    subprocess.run(
+        [
+            "cmd.exe",
+            "/c",
+            "mklink",
+            "/J",
+            origin_path,
+            f"{destination_path}\\{path.basename(origin_path)}",
+        ],
+        shell=True,
+        check=False,
+    )
 
 
 # Example usage
 if __name__ == "__main__":
-    if sys.argv[1] == "--help":
+    try:
+        if sys.argv[1] == "--help":
+            print_help()
+            sys.exit(0)
+        from_path, to_path = sys.argv[1:3]
+        copy_and_link(from_path, to_path)
+        sys.exit(0)
+    except ValueError as e:
+        print(e)
         print_help()
         sys.exit(0)
-    from_path, to_path = sys.argv[1:3]
-    copy_and_link(from_path, to_path)
-    sys.exit(0)
