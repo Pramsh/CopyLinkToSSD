@@ -5,6 +5,9 @@ from os import path
 
 
 def print_help():
+    """
+     prints script instruction
+    """
     help_text = """
 Usage: python copy_and_link.py <from_path> <to_path>
 
